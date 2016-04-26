@@ -7,7 +7,17 @@
     <script src="js/angular.min.js"></script>
 </head>
 <body>
-    <h1>OK, Hello again...</h1>
-    <input type="button" onclick="hello()" value="Show hello alert">
+    <!--<h1>OK, Hello again...</h1>
+    <input type="button" onclick="hello()" value="Show hello alert"> -->
+
+    <div  ng-app="">
+        <h1>Calculator</h1>
+        <label style="margin: 0 23px 0 10px; ">First argument:</label>
+        <input style="padding:0; margin: 0 0 10px 0; border-radius: 5px; border-style: solid " type="number" ng-model="FirstVal"><br>
+        <label style="margin: 0 5px 0 10px">Second argument:</label>
+        <input style="padding:0; margin: 0 0 10px 0; border-radius: 5px; border-style: solid " type="number" ng-model="SecondVal"><br>
+        Result is <span style="padding-left: 10px" ng-bind="FirstVal+SecondVal"></span>
+    </div>
 </body>
 </html>
+
