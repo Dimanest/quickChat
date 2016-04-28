@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
+</head>
+<body ng-app="chat">
+<div ng-controller="MessageController">
+    <h3>Your today's message: {{todaysMessage}}</h3>
+    Current time is: {{timeNow}}
+</div>
+<script>
+    angular.module("chat", [])
+            .controller("MessageController", function($scope, $http) {
+                $http.get("/hello").success(function(response) {
+                    $scope.todaysMessage = response;
+                });
+
+                $http.get("/time/now").success(function(response) {
+                    $scope.timeNow = response;
+                });
+            });
+</script>
+</body>
+</html>
