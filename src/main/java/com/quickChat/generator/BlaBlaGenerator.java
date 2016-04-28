@@ -62,9 +62,4 @@ public class BlaBlaGenerator implements MessageGeneratorService {
         sb.append(ENDING);
         return sb.toString();
     }
-
-    public static void main(String[] args) {
-        BlaBlaGenerator bb = new BlaBlaGenerator();
-        System.out.println(bb.getNewMessage());
-    }
 }

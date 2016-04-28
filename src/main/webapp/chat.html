@@ -8,11 +8,28 @@
 <body ng-app="chat">
 <div ng-controller="MessageController">
     <h3>Your today's message: {{todaysMessage}}</h3>
-    Current time is: {{timeNow}}
+    <div>Current time is: {{timeNow}}</div>
+    <form>
+        <input type="text" ng-model="msgInput">
+        <input type="button" value="Send" ng-click="sendMessage()">
+    </form>
+    <div ng-repeat="message in messages">
+        <div>
+            <div ng-if="message.sender=='me'" style="color:dodgerblue">
+                {{message.text}}
+            </div>
+            <div ng-if="message.sender!='me'" style="color:chocolate">
+                {{message.text}}
+            </div>
+        </div>
+
+    </div>
+
 </div>
 <script>
     angular.module("chat", [])
             .controller("MessageController", function($scope, $http) {
+                $scope.messages = [];
                 $http.get("/hello").success(function(response) {
                     $scope.todaysMessage = response;
                 });
@@ -20,6 +37,15 @@
                 $http.get("/time/now").success(function(response) {
                     $scope.timeNow = response;
                 });
+
+                $scope.sendMessage = function() {
+                    $scope.messages.push({text:$scope.msgInput, sender:"me"});
+                    $http.get("/messages/new").success(function(answer) {
+                        $scope.messages.push({text:answer, sender:"blabla"});
+                    });
+
+                    $scope.msgInput = "";
+                }
             });
 </script>
 </body>
